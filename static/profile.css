@@ -1,0 +1,73 @@
+
+body {
+    background-image: url('/static/niganiga.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-container {
+    margin-top: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(85, 56, 139, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d1b3ff;
+}
+
+.profile-info {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-info li {
+    padding: 10px;
+    border-bottom: 1px solid #d1b3ff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-info li:last-child {
+    border-bottom: none;
+}
+
+.profile-info label {
+    font-weight: bold;
+}
+
+.profile-info span {
+    color: #fff;
+}
+
+.btn-back {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #6a4c9c;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #7b56a6;
+}
+

@@ -1,0 +1,28 @@
+
+{% include "base.html" %}
+
+  <body style="background-image: url('/static/prf.jpg'); background-size: cover; background-position: center;">
+    {% include "navbar.html" %}
+    <div class="card d-flex align-items-center position-absolute top-50 start-50 translate-middle"
+      style="width: 20rem; background-color: rgba(90, 75, 122, 0.8); border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);">
+      
+      <div class="card-body text-center">
+        <img src="/static/{{ found_user['image'] }}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover; border: 2px solid #d1b3ff;" />
+
+        <h1 class="fs-3 text-light">
+          Name: {{ found_user['name'] }}
+          {% if found_user['role'] == "Admin" %}
+          <span class="fs-6 badge rounded-pill text-bg-danger">Admin</span>
+          {% elif found_user['role'] == "Moderator" %}
+          <span class="badge rounded-pill text-bg-primary" style="font-size: 14px; padding: 2% 0.4rem;">Moderator</span>
+          {% else %}
+          <span class="badge rounded-pill text-bg-success">User</span>
+          {% endif %}
+        </h1>
+
+        <p class="text-light">Gender: {{ found_user['gender'] }}</p>
+        <p class="text-light">Age: {{ found_user['age'] }}</p>
+      </div>
+    </div>
+  </body>
+</html>

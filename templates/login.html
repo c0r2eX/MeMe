@@ -1,0 +1,62 @@
+{% include "navbar.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="/static/dynamic.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-purple {
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ;
+        }
+
+        .btn-purple:hover {
+            background-color: #6c3483;
+            box-shadow: 0 0 15px rgba(142, 68, 173, 0.5);
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+        }
+
+        .login-outline {
+            border-color: #8e44ad;
+        }
+
+        .login-outline:focus {
+            animation: delay 2s;
+            transition: 1s;
+            border-color: #1F0EB4;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+<body style="background-image: url(/static/niganiga.jpg); background-size: cover; overflow: hidden;">
+
+    <div class="bg-transparent opacity-60 d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow login-box" style="width: 100%; max-width: 400px;">
+            <h2 class="text-center mb-4">Login</h2>
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-3">
+                    {{ form.username(class="form-control bg-transparent login-outline", placeholder="Username") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password(class="form-control bg-transparent login-outline", placeholder="Password") }}
+                </div>
+                <button type="submit" class="btn btn-purple w-100">{{ form.login_submit.label.text }}</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

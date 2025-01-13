@@ -1,0 +1,52 @@
+{% include "base.html" %}
+
+<html>
+  <head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    
+    <!-- Flash Messages at the Top -->
+    <div class="flash-messages-container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert-container mt-3">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} text-center" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="register-container mt-4">
+      <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="register-card">
+          <h2 class="text-center mb-4">Register</h2>
+          
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            {{ form.username(class_="form-control", placeholder="Enter Username") }}
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            {{ form.password(class_="form-control", placeholder="Enter password") }}
+          </div>
+
+          <div class="mb-3">
+            <label for="repeat_password" class="form-label">Repeat Password</label>
+            {{ form.repeat_password(class_="form-control", placeholder="Repeat password") }}
+          </div>
+
+          <button type="submit" class="register-btn w-100">{{ form.register_submit(style='background-color :#6a4c9c; color-#6a4c9c; border : none' ) }}</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

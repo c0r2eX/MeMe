@@ -1,0 +1,76 @@
+{% include "base.html" %}
+
+<html lang="en">
+  <title>User Profiles</title>
+  <body
+    style="
+      background-image: url('/static/niganiga.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    "
+  >
+    {% include "navbar.html" %}
+    <div class="container mt-5 d-flex justify-content-center">
+      <div
+        class="card p-4"
+        style="
+          width: 20rem;
+          background-color: rgba(85, 56, 139, 0.8);
+          border-radius: 15px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(10px);
+        "
+      >
+        <h2
+          class="text-center text-white mb-4"
+          style="
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            color: #d1b3ff;
+          "
+        >
+          User Profiles
+        </h2>
+             <li class="list-group-item bg-transparent border-0">
+            <a
+              class="fs-4 text-light"
+              href="{{ url_for('profile', username=username) }}"
+              style="
+                text-decoration: none;
+                transition: color 0.3s;
+                color: #fff;
+                font-weight: bold;
+              "
+            >
+        <ul class="list-group">
+          <li class="list-group-item bg-transparent border-0" style="text-decoration: none;
+          transition: color 0.3s;
+          color: #fff;
+          font-weight: bold;
+        ">{{ current_user.username }}</li>
+            
+              
+               
+          
+          {% for username, user in users.items() %}
+          <li class="list-group-item bg-transparent border-0">
+            <a
+              class="fs-4 text-light"
+              href="{{ url_for('profile', username=username) }}"
+              style="
+                text-decoration: none;
+                transition: color 0.3s;
+                color: #fff;
+                font-weight: bold;
+              "
+            >
+              {{ user['name'] }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

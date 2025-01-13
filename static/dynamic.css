@@ -1,0 +1,163 @@
+body {
+    background-image: url('/static/niganiga.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-container {
+    background-color: rgba(90, 75, 122, 0.9);
+    border-radius: 20px;
+    padding: 20px 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.social-icons a {
+    margin: 0 15px;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #d1b3ff;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.divider {
+    width: 50%;
+    height: 2px;
+    background: #d1b3ff;
+    margin: 20px auto;
+}
+
+.login-box {
+    background-color: rgba(85, 56, 139, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.form-label {
+    color: #fff;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: none;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 5px 2px rgba(106, 76, 156, 0.7);
+}
+
+h2 {
+    color: white;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.registerb {
+    background-color: #6a4c9c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.registerb:hover {
+    background-color: #7b56a6;
+}
+
+.registerb:active {
+    background-color: #9b6cc6;
+}
+.create-btn {
+    background-color: #6a4c9c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+  }
+  .create-btn:hover {
+    background-color: #7b56a6;
+  }
+  .create-btn:active {
+    background-color: #9b6cc6;
+  }
+
+
+.meme-nav-item {
+    transition: all 0.3s ease;
+  }
+  
+
+  .meme-nav-link {
+    font-weight: bold;
+    color: white;
+    transition: color 0.2s;
+  }
+  
+
+  .meme-nav-link:hover {
+    color: #7b56a6;  
+  }
+  
+
+  .meme-nav-link.active {
+    color: #ffcc00;  
+  }
+  
+
+  .meme-nav-item:hover .meme-nav-link {
+    position: relative;
+  }
+  
+  .meme-nav-item:hover .meme-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #7b56a6;
+    animation: underline 0.5s forwards;
+  }
+  
+
+  @keyframes underline {
+    from {
+      width: 0;
+      left: 50%;
+    }
+    to {
+      width: 100%;
+      left: 0;
+    }
+  }
