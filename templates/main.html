@@ -24,7 +24,7 @@
       <div
         class="card"
         style="
-          width: 20rem;
+          width: 22rem;
           background-color: #5a4b7a;
           border-radius: 15px;
           box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
@@ -36,7 +36,7 @@
             src="{{ url_for('static', filename=meme.img) }}"
             alt="Meme image"
             class="img-fluid rounded"
-            style="height: 200px; object-fit: cover"
+            style="height: 250px; object-fit: cover"
           />
           {% elif meme.video %}
           <video
@@ -44,41 +44,77 @@
             loop
             autoplay
             class="img-fluid rounded"
-            style="height: 200px; object-fit: cover"
+            style="height: 250px; object-fit: cover"
           >
             <source
               src="{{ url_for('static', filename=meme.video) }}"
               type="video/mp4"
             />
-            Your browser does not support the video tag.
           </video>
           {% endif %}
           <h3
-          class="mt-3"
-          style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold; 
+            class="mt-3"
+            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold; 
             color: {{ meme.text_color | default('black') }};"
-            > 
+          > 
             {{ meme.text }}
-            </h3>
-   
-            <div class="d-flex justify-content-around align-items-center mt-3">
-              <form action="{{ url_for('upvote', meme_id=meme.id) }}" method="POST">
-                <button type="submit" class="btn btn-outline-success">
-                  👍
-                </button>
-                <span class="text-success d-block mt-1">Likes: {{ meme.upvotes }}</span>
-              </form>
-            
-              <form action="{{ url_for('downvote', meme_id=meme.id) }}" method="POST">
-                <button type="submit" class="btn btn-outline-danger">
-                  👎
-                </button>
-                <span class="text-danger d-block mt-1">Dislikes: {{ meme.downvotes }}</span>
-              </form>
-            </div>
-            
-        
-        
+          </h3>
+
+          <div class="d-flex justify-content-around align-items-center mt-3">
+            <form action="{{ url_for('upvote', meme_id=meme.id) }}" method="POST">
+              <button type="submit" class="btn btn-outline-success">
+                👍
+              </button>
+              <span class="text-success d-block mt-1">Likes: {{ meme.upvotes }}</span>
+            </form>
+
+            <form action="{{ url_for('downvote', meme_id=meme.id) }}" method="POST">
+              <button type="submit" class="btn btn-outline-danger">
+                👎
+              </button>
+              <span class="text-danger d-block mt-1">Dislikes: {{ meme.downvotes }}</span>
+            </form>
+          </div>
+
+          <div class="dropdown mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Comments
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <form action="{{ url_for('add_comment', meme_id=meme.id) }}" method="POST" class="px-3">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="comment"
+                      class="form-control"
+                      placeholder="Add a comment"
+                      required
+                    />
+                    <button type="submit" class="btn btn-primary">Send</button>
+                  </div>
+                </form>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              {% for comment in meme.comments %}
+              <li>
+                <div class="px-3">
+                  <p>{{ comment.content }}</p>
+                  <small  style="color: #000000; margin-top: -5px; display: block;">
+                    By {{ comment.user.username }}<span> on {{ comment.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </span> </small>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
           {% if current_user.is_authenticated and current_user.username == 'admin_user' %}
           <div class="d-flex justify-content-around mt-3">
             <a

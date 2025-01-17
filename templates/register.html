@@ -1,29 +1,79 @@
 {% include "base.html" %}
 
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-purple {
+            background: linear-gradient(45deg, #8e44ad, #6c3483); 
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px; 
+            font-weight: bold;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            width: 400px;
+        }
+
+        .btn-purple:hover {
+            background: linear-gradient(45deg, #6c3483, #8e44ad);
+            box-shadow: 0 4px 20px rgba(142, 68, 173, 0.5);  
+        }
+
+        .register-container {
+            background-image: url('/static/niganiga.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .register-card {
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .register-outline {
+            border-color: #8e44ad;
+        }
+
+        .register-outline:focus {
+            animation: delay 2s;
+            transition: 1s;
+            border-color: #1F0EB4;
+            border-radius: 40px;
+        }
+
+        .text-grey {
+            color: grey;
+            font-size: 14px;
+        }
+
+        .login-link {
+            text-decoration: none;
+            color: #8e44ad;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
   </head>
   <body>
     {% include "navbar.html" %}
     
-    <!-- Flash Messages at the Top -->
-    <div class="flash-messages-container">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <div class="alert-container mt-3">
-          {% for category, message in messages %}
-            <div class="alert alert-{{ category }} text-center" role="alert">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-      {% endwith %}
-    </div>
-
-    <div class="register-container mt-4">
+    <div class="register-container">
       <form method="POST" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div class="register-card">
@@ -31,22 +81,28 @@
           
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            {{ form.username(class_="form-control", placeholder="Enter Username") }}
+            {{ form.username(class_="form-control bg-transparent register-outline", placeholder="Enter Username") }}
           </div>
 
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            {{ form.password(class_="form-control", placeholder="Enter password") }}
+            {{ form.password(class_="form-control bg-transparent register-outline", placeholder="Enter password") }}
           </div>
 
           <div class="mb-3">
             <label for="repeat_password" class="form-label">Repeat Password</label>
-            {{ form.repeat_password(class_="form-control", placeholder="Repeat password") }}
+            {{ form.repeat_password(class_="form-control bg-transparent register-outline", placeholder="Repeat password") }}
           </div>
 
-          <button type="submit" class="register-btn w-100">{{ form.register_submit(style='background-color :#6a4c9c; color-#6a4c9c; border : none' ) }}</button>
+        
+          <button type="submit" class="btn-purple" style="color: #6c3483;">{{ form.register_submit(label="Register", class_="btn-transparent", style="background-color: transparent; border: none; box-shadow: none;") }}</button>
+
+          <div class="text-center mt-3">
+            <p class="text-grey">Already have an account? <a href="{{ url_for('login') }}" class="login-link">Login here</a></p>
+          </div>
         </div>
       </form>
     </div>
+
   </body>
 </html>

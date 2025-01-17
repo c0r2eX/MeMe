@@ -5,9 +5,9 @@ from forms import  Memeupload,  Register, Login
 from os import path
 from uuid import uuid4
 from ext import nag, db 
-from modelebi import Meme , User , Vote
+from modelebi import Meme , User , Vote , Comment
 from flask_login import login_user , logout_user , current_user , login_required
-
+from datetime import datetime
 
 users = {
     "Dachi": {"name": "Dachi", "age": 38, "role": "Admin", "gender": "Male", "image": "drak.jpg"},
@@ -141,6 +141,19 @@ def edit(meme_id):
 
 
 
+@nag.route('/add_comment/<int:meme_id>', methods=['POST'])
+def add_comment(meme_id):
+    content = request.form['comment']
+    if not content:
+        flash('Comment cannot be empty', category='error')
+        return redirect(url_for('index'))
+    
+    new_comment = Comment(content=content, meme_id=meme_id, user_id=current_user.id, timestamp=datetime.now())
+    db.session.add(new_comment)
+    db.session.commit()
+    flash('Comment added successfully', category='success')
+    return redirect(url_for('index'))
+
 
 
 @nag.route("/upvote/<int:meme_id>", methods=["POST"])
@@ -166,6 +179,8 @@ def downvote(meme_id):
         meme.downvotes += 1
         db.session.commit()
     return redirect(url_for("index"))
+
+
 
 
 
